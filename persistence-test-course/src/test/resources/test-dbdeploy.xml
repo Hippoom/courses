@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/jdbc
+        http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+	<jdbc:initialize-database data-source="dataSource">
+		<jdbc:script location="classpath:changelog.sql" />
+	</jdbc:initialize-database>
+
+	<bean class="com.dbdeploy.DbDeploy" init-method="go" depends-on="dataSource">
+		<property name="url" value="jdbc:hsqldb:mem:f2g;sql.syntax_ora=true" />
+		<property name="userid" value="SA" />
+		<property name="password" value="" />
+		<property name="driver" value="org.hsqldb.jdbcDriver" />
+		<property name="scriptdirectory" value="src/test/resources/dbdeploy" />
+	</bean>
+
+
+</beans>

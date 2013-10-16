@@ -58,6 +58,12 @@
 			<artifactId>hsqldb</artifactId>
 			<version>${hsqldb.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.dbdeploy</groupId>
+			<artifactId>dbdeploy-core</artifactId>
+			<version>3.0M3</version>
+			<scope>test</scope>
+		</dependency>
 
 		<!-- logging -->
 		<dependency>
@@ -83,6 +89,29 @@
 				<configuration>
 					<argLine>-Dfile.encoding=UTF-8</argLine>
 				</configuration>
+			</plugin>
+			<plugin>
+				<!-- dbdeploy:db-scripts/dbdeploy:update -->
+				<groupId>com.dbdeploy</groupId>
+				<artifactId>maven-dbdeploy-plugin</artifactId>
+				<version>3.0M3</version>
+				<configuration>
+					<scriptdirectory>src/test/scripts/sql</scriptdirectory>
+					<driver>org.hsqldb.jdbcDriver</driver>
+					<url>jdbc:hsqldb:hsql://localhost:9001/f2g</url>
+					<userid>SA</userid>
+					<password></password>
+					<dbms>hsql</dbms>
+					<outputfile>${project.build.directory}/sql/do.sql</outputfile>
+					<undoOutputfile>${project.build.directory}/sql/undo.sql</undoOutputfile>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.hsqldb</groupId>
+						<artifactId>hsqldb</artifactId>
+						<version>${hsqldb.version}</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
