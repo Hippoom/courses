@@ -6,6 +6,7 @@ public class PendingOrderDto {
 	private String trackingId;
 	private String deliveryAddressStreet1;
 	private String deliveryAddressStreet2;
+	private String deliveryPostCode;
 	private Date deliveryTime;
 	private String restaurantId;
 
@@ -47,5 +48,13 @@ public class PendingOrderDto {
 
 	public void setRestaurantId(String restaurantId) {
 		this.restaurantId = restaurantId;
+	}
+
+	public String getDeliveryPostCode() {
+		return deliveryPostCode;
+	}
+
+	public void setDeliveryPostCode(String deliveryPostCode) {
+		this.deliveryPostCode = deliveryPostCode;
 	}
 }

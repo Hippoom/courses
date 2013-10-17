@@ -27,4 +27,25 @@
 		class="com.github.hippoom.courses.pt.anemic.JdbcPendingOrderDao">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
+
+	<bean
+		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="packagesToScan" value="com.github.hippoom.courses.pt.domain" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+		</property>
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<tx:annotation-driven />
+
+	<bean id="jpaPendingOrderRepository"
+		class="com.github.hippoom.courses.pt.domain.JpaPendingOrderRepository" />
 </beans>

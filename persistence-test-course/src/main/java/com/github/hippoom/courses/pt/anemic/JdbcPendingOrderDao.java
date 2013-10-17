@@ -11,13 +11,14 @@ public class JdbcPendingOrderDao extends JdbcDaoSupport {
 
 	public void save(PendingOrderDto order) {
 		getJdbcTemplate()
-				.update("INSERT INTO t_f2g_pending_order(tracking_id, delivery_address_street1, delivery_address_street2, delivery_time) VALUES (?,?,?,?)",
+				.update("INSERT INTO t_f2g_pending_order(tracking_id, delivery_address_street1, delivery_address_street2, post_code, delivery_time) VALUES (?,?,?,?,?)",
 						new Object[] { order.getTrackingId(),
 								order.getDeliveryAddressStreet1(),
 								order.getDeliveryAddressStreet2(),
+								order.getDeliveryPostCode(),
 								order.getDeliveryTime() },
 						new int[] { Types.VARCHAR, Types.VARCHAR,
-								Types.VARCHAR, Types.DATE });
+								Types.VARCHAR, Types.VARCHAR, Types.DATE });
 	}
 
 	public PendingOrderDto findBy(String trackingId) {
@@ -33,6 +34,8 @@ public class JdbcPendingOrderDao extends JdbcDaoSupport {
 								.getString("delivery_address_street1"));
 						order.setDeliveryAddressStreet2(resultSet
 								.getString("delivery_address_street2"));
+						order.setDeliveryPostCode(resultSet
+								.getString("post_code"));
 						order.setDeliveryTime(resultSet
 								.getTimestamp("delivery_time"));
 						order.setRestaurantId(resultSet

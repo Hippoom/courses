@@ -28,8 +28,8 @@ public class AnemicPersistenceTests {
 	@Autowired
 	private JdbcPendingOrderDao dao;
 
-	@DatabaseSetup(value = "classpath:data/anemic_pending_order_fixture.xml")
-	@ExpectedDatabase(value = "classpath:data/anemic_pending_order_expect.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
+	@DatabaseSetup(value = "classpath:data/pending_order_fixture.xml")
+	@ExpectedDatabase(value = "classpath:data/pending_order_expect.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
 	@Test
 	public void orderInserted() throws Throwable {
 		PendingOrderDto prototype = dao.findBy("2");
@@ -39,8 +39,8 @@ public class AnemicPersistenceTests {
 		dao.save(copy);
 	}
 
-	@DatabaseSetup(value = "classpath:data/anemic_pending_order_update_fixture.xml")
-	@ExpectedDatabase(value = "classpath:data/anemic_pending_order_update_expect.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
+	@DatabaseSetup(value = "classpath:data/pending_order_update_fixture.xml")
+	@ExpectedDatabase(value = "classpath:data/pending_order_update_expect.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
 	@Test
 	public void orderUpdated() throws Throwable {
 		PendingOrderDto prototype = dao.findBy("4");
