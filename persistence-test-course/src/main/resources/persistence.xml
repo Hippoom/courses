@@ -19,7 +19,12 @@
 	</bean>
 
 
-	<bean class="org.springframework.jdbc.core.JdbcTemplate">
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="jdbcPendingOrderDao"
+		class="com.github.hippoom.courses.pt.anemic.JdbcPendingOrderDao">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
 </beans>
