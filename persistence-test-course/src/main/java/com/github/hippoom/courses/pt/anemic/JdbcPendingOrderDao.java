@@ -35,10 +35,21 @@ public class JdbcPendingOrderDao extends JdbcDaoSupport {
 								.getString("delivery_address_street2"));
 						order.setDeliveryTime(resultSet
 								.getTimestamp("delivery_time"));
+						order.setRestaurantId(resultSet
+								.getString("restaurant_id"));
 						return order;
 					}
 
 				}, trackingId);
+
+	}
+
+	public void update(PendingOrderDto order) {
+		getJdbcTemplate()
+				.update("update t_f2g_pending_order set restaurant_id = ? where tracking_id = ?",
+						new Object[] { order.getRestaurantId(),
+								order.getTrackingId() },
+						new int[] { Types.VARCHAR, Types.VARCHAR });
 
 	}
 }

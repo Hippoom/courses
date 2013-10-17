@@ -39,6 +39,27 @@ public class AnemicPersistenceTests {
 		dao.save(copy);
 	}
 
+	@DatabaseSetup(value = "classpath:data/anemic_pending_order_update_fixture.xml")
+	@ExpectedDatabase(value = "classpath:data/anemic_pending_order_update_expect.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
+	@Test
+	public void orderUpdated() throws Throwable {
+		PendingOrderDto prototype = dao.findBy("4");
+		PendingOrderDto copy = dao.findBy("5");
+
+		copy(prototype, copy);
+
+		dao.update(copy);
+	}
+
+	private void copy(PendingOrderDto prototype, PendingOrderDto copy) {
+		final String copyId = copy.getTrackingId();
+
+		ModelMapper mapper = new ModelMapper();
+		mapper.createTypeMap(PendingOrderDto.class, PendingOrderDto.class);//otherwise mapper does not work
+		mapper.map(prototype, copy);
+		copy.setTrackingId(copyId);
+	}
+
 	private PendingOrderDto copy(PendingOrderDto prototype, String copyId) {
 		ModelMapper mapper = new ModelMapper();
 		PendingOrderDto copy = mapper.map(prototype, PendingOrderDto.class);

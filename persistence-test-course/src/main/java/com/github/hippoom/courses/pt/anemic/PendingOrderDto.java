@@ -7,6 +7,7 @@ public class PendingOrderDto {
 	private String deliveryAddressStreet1;
 	private String deliveryAddressStreet2;
 	private Date deliveryTime;
+	private String restaurantId;
 
 	public String getTrackingId() {
 		return trackingId;
@@ -38,5 +39,13 @@ public class PendingOrderDto {
 
 	public void setDeliveryTime(Date deliveryTime) {
 		this.deliveryTime = deliveryTime;
+	}
+
+	public String getRestaurantId() {
+		return restaurantId;
+	}
+
+	public void setRestaurantId(String restaurantId) {
+		this.restaurantId = restaurantId;
 	}
 }
