@@ -1,4 +1,4 @@
-package com.github.hippoom.courses.end2end;
+package com.github.hippoom.courses.cucumber.end2end;
 
 public class ConfigurationsForTest {
 

@@ -1,4 +1,4 @@
-package com.github.hippoom.courses.end2end;
+package com.github.hippoom.courses.cucumber.end2end;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
@@ -25,9 +25,9 @@ public class ViewStopsSteps {
 	private static final Integer PREDIFINED_STOP_QUANTITY = MU5678Constants.STOP_QUANTITY;
 
 	private static final String FLIGHT_NUMBER = MU5678Constants.FLIGHT_NUMBER;
-	
+
 	private WebDriver driver = new ChromeDriver(chromeSet());
-	
+
 	@Autowired
 	private ConfigurationsForTest configurations;
 
